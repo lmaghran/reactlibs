@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup as bs
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/book')
 def booklist_api():
     """API for Booklist"""
 
@@ -23,7 +23,7 @@ def booklist_api():
     # removing the ul element from the list
     book_list.pop(0)
 
-    for li in book_list[:99]:
+    for li in book_list[:1]:
         book_dict={}
         book_title_auth= li.text.split("by", 1)
         book_title= book_title_auth[0]
@@ -35,7 +35,7 @@ def booklist_api():
         book_dict = {"title": book_title, "url":book_url, "author":book_auth}
     
         book_array.append(book_dict)
-    book_array= json.dumps(book_array)
+    book_array= json.dumps(book_dict)
 
     return book_array
 
